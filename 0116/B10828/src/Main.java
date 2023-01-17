@@ -58,10 +58,10 @@ public class Main {
 
             switch (str) {
                 case "push" -> push(sc.nextInt());
-                case "pop" -> pop();
-                case "size" -> size();
-                case "empty" -> empty();
-                case "top" -> top();
+                case "pop" -> System.out.println(pop());
+                case "size" -> System.out.println(size());
+                case "empty" -> System.out.println(empty());
+                case "top" -> System.out.println(top());
             }
         }
     }

@@ -49,36 +49,68 @@ public class Main {
     }
 
     public void _05_printInterval(int i, int j) {
+        Node<E> tNode;
+
         for (int k = i; k < j + 1; k++) {
+            tNode = get(k); //코드 5-9의 get함수 사용
             System.out.println(tNode.item);
         }
     }
 
-    public void _06_1_numItems() { //재귀x
-        //?
+    public int _06_1_numItems() { //재귀x
+        Node currNode = head; //head값을 갖는 노드 생성
+        int num = 0; //개수를 세어 줄 변수 생성
+
+        while (currNode.next != 0) { //현재 노드의 다음이 null이 아니면
+            num++; //개수 추가
+            currNode = currNode.next; //현재 노드를 다음 노드로 바꿔줌
+        }
+
+        return num;
     }
 
-    public void _06_2_numItems() { //재귀o
-        //?
+    public int _06_2_numItems() { //재귀o
+        //모르겟덩
     }
 
     public void _07_remove(int index, int k) {
-        if (index >= 0 && index <= numItems-1) {
-            for (int i = index; i < k + 1; i++) {
+        if (index >= 0 && index <= numItems - 1 && (index + k) <= numItems - 1) {
+            for (int i = index; i < index + k + 1; i++) {
+                Node preNode = getNode(index - 1);
+                prevNode.next = preNode.next.next;
+                numItems--;
+            }
+        }
+        else if (index >= 0 && index <= numItems - 1) {
+            for (int i = 0; i < numItems - index; i++) {
                 Node preNode = getNode(index - 1);
                 prevNode.next = preNode.next.next;
                 numItems--;
             }
         }
         else {
-            // 에러 처리
+            //에러
         }
     }
 
     public void _08_add(int x) {
-        newNode.next.prev = newNode;
-        prevNode.next = newNode;
-        numItems++;
+        BidirectionalNode currNode = head;
+
+        for (int i = 0; i < numItems; i++) {
+            if (currNode.next == head) { //다음 노드의 값이 head인 경우 (노드가 head뿐일때)
+                BidirectionalNode newNode = new BidirectionalNode(x, head, head);
+                numItems++;
+                break;
+            }
+            else if (currNode.next < x) { //다음 노드의 값이 x보다 작은 경우
+                currNode = currNode.next; //다음 노드로 이동
+            }
+            else if (currNode.next > x){ //다음 노드의 값이 x보다 큰 경우
+                BidirectionalNode newNode = new BidirectionalNode(x, currNode.prev, currNode.next);
+                numItems++;
+                break;
+            }
+        }
     }
 
     public void _09_concat(LinkedList list1, LinkedList list2) {
@@ -86,7 +118,13 @@ public class Main {
     }
 
     public void _10() {
-        //?
+        //일단 node1과 node2가 속한 연결 리스트의 길이를 각각 구함
+        //길이가 같다면 node1의 node1.next를 계속 하던지 node1.prev를 계속 하던지 해서 node2값이 있나 확인
+        //node2에서도 마찬가지로 진행.
+        //각 리스트에 서로의 값이 존재하고 next, prev를 실행한 횟수가 서로 같다면
+        //ex) node1과 node2가 3칸 떨어져있다고 가정했을 때
+        // node1.next와 node2.prev.prev의 값이 같은지 확인
+        //나머지 node들도 값이 같은지 반복해서 확인하면 결과적으로 node1과 node2가 같은지 확인 가능
     }
 
     public int _11_lastIndexOf(Integer x) {
@@ -102,6 +140,6 @@ public class Main {
     }
 
     public void _12() {
-        //뭐 어쩌라고..
+        //배열리스트 메서드를 왜 연결리스트에 추가함..?
     }
 }

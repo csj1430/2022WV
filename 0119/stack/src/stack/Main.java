@@ -71,11 +71,16 @@ public class Main {
     }
 
     public void _06_printAll() {
-        //연결리스트 이해가 잘 안감..ㅠ
+        Node currNode = topNode;
+
+        for (int i = numItems; i == 0; i++) {
+            System.out.println(currNode.item);
+            currNode = currNode.prev;
+        }
     }
 
     public void _07_printAll() {
-        //제발 그만해..
+        //하기가 싫어..
     }
 
     public void _08() {
@@ -97,6 +102,9 @@ public class Main {
     }
 
     public void _10_printReverse() {
-        //몰라..
+        for (int i = 0; i < numItems; i++) {
+            System.out.println(topNode.item);
+            pop();
+        }
     }
 }
